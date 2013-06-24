@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -94,8 +95,10 @@ public class TableQueue extends JTable implements DownloadServiceListener, Downl
             final String string = (String)data[c];
             label.setText(string);
             label.setBackground(selected ? Color.GREEN : Color.RED);
-            if(c == 0)
+            if(c == 0){
                 icon.setIcon(downloader.getState().getIcon());
+                panel.setToolTipText(downloader.getRequest().getVideo().toToolTip());
+            }
             return panel;
         }
     }

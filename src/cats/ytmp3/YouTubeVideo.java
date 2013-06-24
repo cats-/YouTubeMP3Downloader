@@ -121,6 +121,19 @@ public final class YouTubeVideo implements Cloneable{
         return new URL(String.format("http://www.youtube-mp3.org/get?video_id=%s&h=%s", id, hash));
     }
 
+    public String toToolTip(){
+        final StringBuilder builder = new StringBuilder("<html>");
+        builder.append(String.format("Title: %s<br>", title));
+        builder.append(String.format("Author: %s<br>", author));
+        builder.append(String.format("Duration: %s<br>", duration));
+        builder.append(String.format("Views: %,d<br>", views));
+        builder.append(String.format("Rating: %1.2f<br>", rating));
+        builder.append(String.format("Likes: %,d<br>", likes));
+        builder.append(String.format("Dislikes: %,d", dislikes));
+        builder.append("</html>");
+        return builder.toString();
+    }
+
     public String toString(){
         final StringBuilder builder = new StringBuilder();
         builder.append(String.format("Video info for: %s (ID: %s)", url, id));
@@ -129,9 +142,9 @@ public final class YouTubeVideo implements Cloneable{
         final String stars = new String(starsArray);
         builder.append(String.format("\n%s\n", stars));
         builder.append(String.format("Title:\n\t%s\n", title));
-        builder.append(String.format("Uploader:\n\t%s\n", author));
+        builder.append(String.format("Author:\n\t%s\n", author));
         builder.append(String.format("Description:\n\t%s\n", desc.replaceAll("\n", "\n\t")));
-        builder.append(String.format("Duration:\n\t%s\n", duration.toDurationString()));
+        builder.append(String.format("Duration:\n\t%s\n", duration));
         builder.append(String.format("Views:\n\t%,d\n", views));
         builder.append(String.format("Rating:\n\t%f\n", rating));
         builder.append(String.format("Likes:\n\t%,d\n", likes));
